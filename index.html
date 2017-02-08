@@ -23,12 +23,14 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 	
 	<script type="text/javascript">
-		if(Tawk_API.isChatOngoing()){
-			document.getElementById("ongoing-status").innerHTML = "True";
-		}
-		else {
-			document.getElementById("ongoing-status").innerHTML = "False";
-		}
+		(function(){
+			if(Tawk_API.isChatOngoing()){
+				document.getElementById("ongoing-status").innerHTML = "True";
+			}
+			else {
+				document.getElementById("ongoing-status").innerHTML = "False";
+			}
+		});
 	</script>
 </body>
 </html>
