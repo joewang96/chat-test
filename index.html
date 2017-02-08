@@ -6,7 +6,7 @@
 <body>
 	<h1>Tawk.to Deployment Test Site</h1>
 	
-	<h4>Chat Ongoing: <span id="ongoing-status"></span></h4>
+	<h4>Chat Ongoing: <span id="ongoing-status">Rendering</span></h4>
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -30,7 +30,7 @@ s0.parentNode.insertBefore(s1,s0);
 			else {
 				document.getElementById("ongoing-status").innerHTML = "False";
 			}
-		});
+		})();
 	</script>
 </body>
 </html>
