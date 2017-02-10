@@ -12,7 +12,8 @@
 	
 	<h4>Time Chatting: </h4><span id="timer">0</span> seconds
 	
-	<h4>History of Chat Lengths: </h4><span id="history"></span>
+	<h4>History of Chat Lengths: </h4>
+	<ol id="history"></ol>
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -40,8 +41,10 @@ s0.parentNode.insertBefore(s1,s0);
 			console.log(timeChatting);
 		};
 		Tawk_API.onChatEnded = function(){
-			history.push(timeChatting);
-			document.getElementById("history").innerHTML = history;
+			history.unshift(timeChatting);
+			var entry = document.createElement('li');
+			entry.appendChild(document.createTextNode(history[0]));
+			document.getElementById("history").appendChild(entry);
     			startTime = new Date().getTime();
 		};
 		window.setInterval(function(){
