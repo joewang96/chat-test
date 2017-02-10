@@ -9,6 +9,8 @@
 	<h4>Chat Ongoing: </h4><span id="ongoing-status">Temporary</span>
 	
 	<h4>Engagement Status: </h4><span id="engage-status">Temporary</span>
+	
+	<h4>Time Chatting: </h4><span id="timer">0</span> seconds
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -25,10 +27,20 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 	
 	<script type="text/javascript">
+		var startTime;
+		var timeChatting;
+		Tawk_API.onChatStarted = function(){
+    			startTime = new Date().getTime();
+		};
+		Tawk_API.onChatEnded = function(){
+    			startTime = new Date().getTime();
+			timeChatting = new Date().getTime();
+		};
 		window.setInterval(function(){
 			<!-- Tawk_API = Tawk_API || {}; -->
 			if(Tawk_API.isChatOngoing()){
 				document.getElementById("ongoing-status").innerHTML = "True";
+				timeChatting = new Date().getTime();
 			}
 			else {
 				document.getElementById("ongoing-status").innerHTML = "False";
@@ -39,7 +51,8 @@ s0.parentNode.insertBefore(s1,s0);
 			else {
 				document.getElementById("engage-status").innerHTML = "Unengaged";
 			}
-		}, 5000);
+			document.getElementById("timer").innerHTML = timeChatting - startTime;
+		}, 1000);
 	</script>
 </body>
 </html>
