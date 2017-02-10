@@ -29,14 +29,14 @@ s0.parentNode.insertBefore(s1,s0);
 	<script type="text/javascript">
 		var startTime = 0;
 		var timeChatting = 0;
-		var history = [];
+		var history = new Array();
 		
 		Tawk_API.onChatStarted = function(){
     			startTime = new Date().getTime();
 			timeChatting = new Date().getTime();
 		};
 		Tawk_API.onChatEnded = function(){
-			history.unshift(timeChatting);
+			history.unshift(Math.round((timeChatting - startTime) / 1000));
 			console.log(history[0]);
     			startTime = new Date().getTime();
 		};
