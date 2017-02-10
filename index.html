@@ -6,7 +6,9 @@
 <body>
 	<h1>Tawk.to Deployment Test Site</h1>
 	
-	<h4>Chat Ongoing: </h4><p id="ongoing-status">Temporary</p>
+	<h4>Chat Ongoing: </h4><span id="ongoing-status">Temporary</span>
+	
+	<h4>Engagement Status: </h4><span id="engage-status">Temporary</span>
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -24,12 +26,18 @@ s0.parentNode.insertBefore(s1,s0);
 	
 	<script type="text/javascript">
 		window.setInterval(function(){
-			Tawk_API = Tawk_API || {};
+			<!-- Tawk_API = Tawk_API || {}; -->
 			if(Tawk_API.isChatOngoing()){
 				document.getElementById("ongoing-status").innerHTML = "True";
 			}
 			else {
 				document.getElementById("ongoing-status").innerHTML = "False";
+			}
+			if(Tawk_API.isVisitorEngaged()){
+				document.getElementById("engage-status").innerHTML = "Engaged";
+			}
+			else {
+				document.getElementById("engage-status").innerHTML = "Unengaged";
 			}
 		}, 5000);
 	</script>
