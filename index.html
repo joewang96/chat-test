@@ -11,6 +11,8 @@
 	<h4>Engagement Status: </h4><span id="engage-status">Temporary</span>
 	
 	<h4>Time Chatting: </h4><span id="timer">0</span> seconds
+	
+	<h4>History of Chat Lengths: </h4><span id="history"></span>
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -29,12 +31,16 @@ s0.parentNode.insertBefore(s1,s0);
 	<script type="text/javascript">
 		var startTime = 0;
 		var timeChatting = 0;
+		var history = [];
+		
 		Tawk_API.onChatStarted = function(){
     			startTime = new Date().getTime();
+			timeChatting = new Date().getTime();
 		};
 		Tawk_API.onChatEnded = function(){
+			history.push(timeChatting);
+			document.getElementById("history").innerHTML = history;
     			startTime = new Date().getTime();
-			timeChatting = new Date().getTime();
 		};
 		window.setInterval(function(){
 			<!-- Tawk_API = Tawk_API || {}; -->
@@ -51,7 +57,7 @@ s0.parentNode.insertBefore(s1,s0);
 			else {
 				document.getElementById("engage-status").innerHTML = "Unengaged";
 			}
-			document.getElementById("timer").innerHTML = timeChatting - startTime;
+			document.getElementById("timer").innerHTML = (timeChatting - startTime) / 1000;
 		}, 1000);
 	</script>
 </body>
