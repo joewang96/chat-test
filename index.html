@@ -4,7 +4,7 @@
 	<title>Tawk.to Test Site</title>
 </head>
 <body>
-	<h1>Tawk.to Deployment Test Site</h1>
+	<h1>Tawk.to Javascript Test Site</h1>
 	
 	<h4>Chat Ongoing: </h4><span id="ongoing-status">Temporary</span>
 	
@@ -30,6 +30,10 @@ s0.parentNode.insertBefore(s1,s0);
 		var startTime = 0;
 		var timeChatting = 0;
 		var history = new Array();
+		
+		Tawk_API.onLoad = function(){
+			document.getElementById("headerBox").style.backgroundColor = "red";
+		}
 		
 		Tawk_API.onChatStarted = function(){
     			startTime = new Date().getTime();
