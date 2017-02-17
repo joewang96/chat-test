@@ -12,7 +12,7 @@
 	
 	<h4>Time Chatting: </h4><span id="timer">0</span> seconds
 	
-	<button id="event-btn">Test a Chat Event</button>
+	<p><button id="event-btn">Test a Event, Tags, and Attributes</button></p>
 
 <!--Start of Tawk.to Script-->
 <script type="text/javascript">
@@ -29,9 +29,28 @@ s0.parentNode.insertBefore(s1,s0);
 <!--End of Tawk.to Script-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	<script type="text/javascript">
+		/* formats the date and time to display the sent at.. message*/
+		function formatAMPM(date) {
+			  var hours = date.getHours();
+			  var minutes = date.getMinutes();
+			  var ampm = hours >= 12 ? 'pm' : 'am';
+			  hours = hours % 12;
+			  hours = hours ? hours : 12; // the hour '0' should be '12'
+			  minutes = minutes < 10 ? '0'+minutes : minutes;
+			  var strTime = hours + ':' + minutes + ' ' + ampm;
+			  return strTime;
+		}
+		
 		var startTime = 0;
 		var timeChatting = 0;
 		var history = new Array();
+		
+		Tawk_API.onLoad = function(){
+			var arrivalT = formatAMPM(new Date());
+			Tawk_API.setAttributes({
+				'time-arrived'    : '' + arrivalT
+		    	}, function(error){});
+		});
 		
 		/*
 		$("#headerBox").css("backgroundColor","red");
@@ -46,6 +65,7 @@ s0.parentNode.insertBefore(s1,s0);
 		$('#event-btn').click(function(){
 			Tawk_API.addEvent('clicked-button', {
 			'button'    : 'clicked' },function(error){});
+			Tawk_API.addTags(['btn'], function(error){});
 		});
 		
 		Tawk_API.onChatStarted = function(){
